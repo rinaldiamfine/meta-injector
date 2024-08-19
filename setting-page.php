@@ -38,13 +38,6 @@ class MetaInjectorSettingPage {
         $this->ogType = get_option( 'meta_injector_robots', 'index, follow' );
         $this->ogSiteName = get_option( 'meta_injector_robots', 'index, follow' );
         $this->ogLocale = get_option( 'meta_injector_robots', 'index, follow' );
-        // <meta property="og:title" content="The Rock">
-        // <meta property="og:type" content="video.movie">
-        // <meta property="og:url" content="http://www.imdb.com/title/tt0117500/">
-        // <meta property="og:image" content="http://ia.media-imdb.com/images/rock.jpg">
-        // <meta property="og:description" content="A description of the movie The Rock.">
-        // <meta property="og:site_name" content="IMDb">
-        // <meta property="og:locale" content="en_US">
 
         // Twitter meta tags
         $this->tCard = get_option( 'meta_injector_robots', 'index, follow' );
@@ -52,11 +45,6 @@ class MetaInjectorSettingPage {
         $this->tTitle = get_option( 'meta_injector_robots', 'index, follow' );
         $this->tDescription = get_option( 'meta_injector_robots', 'index, follow' );
         $this->tImage = get_option( 'meta_injector_robots', 'index, follow' );
-        // <meta name="twitter:card" content="summary_large_image">
-        // <meta name="twitter:site" content="@publisher_handle">
-        // <meta name="twitter:title" content="Page Title">
-        // <meta name="twitter:description" content="Page description less than 200 characters">
-        // <meta name="twitter:image" content="http://www.example.com/image.jpg">
     }
 
     public function setup_hooks() {
@@ -112,55 +100,55 @@ class MetaInjectorSettingPage {
             'General Meta Tags', 
             array( $this, 'section_callback' ), 
             'meta-injector',
-            array( 'name' => '' ) // Args
+            array( 'name' => '' )
         );
         add_settings_section(
             'open_graph_meta_tag_section', 
             'Open Graph Meta Tags', 
             array( $this, 'section_callback' ), 
             'meta-injector',
-            array( 'name' => '' ) // Args
+            array( 'name' => '' )
         );
         add_settings_section(
             'twitter_meta_tag_section', 
             'Twitter Card Meta Tags', 
             array( $this, 'section_callback' ), 
             'meta-injector',
-            array( 'name' => '' ) // Args
+            array( 'name' => '' )
         );
 
         // Field setting
         add_settings_field(
-            'meta_injector_description', // ID
-            'Description', // Title
-            array( $this, 'field_callback' ), // Callback
-            'meta-injector', // Page
-            'general_meta_tag_section', // Section
-            array( 'key' => 'meta_injector_description' ) // Args
+            'meta_injector_description',
+            'Description',
+            array( $this, 'field_callback' ),
+            'meta-injector',
+            'general_meta_tag_section',
+            array( 'key' => 'meta_injector_description' )
         );
         add_settings_field(
-            'meta_injector_keywords', // ID
-            'Keywords', // Title
-            array( $this, 'field_callback' ), // Callback
-            'meta-injector', // Page
-            'general_meta_tag_section', // Section
-            array( 'key' => 'meta_injector_keywords' ) // Args
+            'meta_injector_keywords',
+            'Keywords',
+            array( $this, 'field_callback' ),
+            'meta-injector',
+            'general_meta_tag_section',
+            array( 'key' => 'meta_injector_keywords' )
         );
         add_settings_field(
-            'meta_injector_author', // ID
-            'Author', // Title
-            array( $this, 'field_callback' ), // Callback
-            'meta-injector', // Page
-            'general_meta_tag_section', // Section
-            array( 'key' => 'meta_injector_author' ) // Args
+            'meta_injector_author',
+            'Author',
+            array( $this, 'field_callback' ),
+            'meta-injector',
+            'general_meta_tag_section',
+            array( 'key' => 'meta_injector_author' )
         );
         add_settings_field(
-            'meta_injector_robots', // ID
-            'Robots', // Title
-            array( $this, 'field_callback' ), // Callback
-            'meta-injector', // Page
-            'general_meta_tag_section', // Section
-            array( 'key' => 'meta_injector_robots' ) // Args
+            'meta_injector_robots',
+            'Robots',
+            array( $this, 'field_callback' ),
+            'meta-injector',
+            'general_meta_tag_section',
+            array( 'key' => 'meta_injector_robots' )
         );
     }
 

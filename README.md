@@ -1,6 +1,6 @@
 # Meta Injector
 
-**Contributors:** Rinaldi
+**Contributors:** Rinaldi  
 **Tags:** meta tags, SEO, WordPress, description, author  
 **Requires at least:** 5.0  
 **Tested up to:** 6.3  

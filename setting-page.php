@@ -30,21 +30,21 @@ class MetaInjectorSettingPage {
         $this->author = get_option( 'meta_injector_author', 'Author website' );
         $this->robots = get_option( 'meta_injector_robots', 'index, follow' );
 
-        // Open graph meta tags
-        $this->ogTitle = get_option( 'meta_injector_robots', 'index, follow' );
-        $this->ogDescription = get_option( 'meta_injector_robots', 'index, follow' );
-        $this->ogImage = get_option( 'meta_injector_robots', 'index, follow' );
-        $this->ogUrl = get_option( 'meta_injector_robots', 'index, follow' );
-        $this->ogType = get_option( 'meta_injector_robots', 'index, follow' );
-        $this->ogSiteName = get_option( 'meta_injector_robots', 'index, follow' );
-        $this->ogLocale = get_option( 'meta_injector_robots', 'index, follow' );
-
-        // Twitter meta tags
-        $this->tCard = get_option( 'meta_injector_robots', 'index, follow' );
-        $this->tSite = get_option( 'meta_injector_robots', 'index, follow' );
-        $this->tTitle = get_option( 'meta_injector_robots', 'index, follow' );
-        $this->tDescription = get_option( 'meta_injector_robots', 'index, follow' );
-        $this->tImage = get_option( 'meta_injector_robots', 'index, follow' );
+        // Open Graph
+        $this->ogTitle = get_option( 'meta_injector_og_title', get_bloginfo('name') );
+        $this->ogDescription = get_option( 'meta_injector_og_description', $this->description );
+        $this->ogImage = get_option( 'meta_injector_og_image', '' );
+        $this->ogUrl = get_option( 'meta_injector_og_url', home_url() );
+        $this->ogType = get_option( 'meta_injector_og_type', 'website' );
+        $this->ogSiteName = get_option( 'meta_injector_og_site_name', get_bloginfo('name') );
+        $this->ogLocale = get_option( 'meta_injector_og_locale', 'id_ID' );
+        
+        // Twitter
+        $this->tCard = get_option( 'meta_injector_t_card', 'summary_large_image' );
+        $this->tSite = get_option( 'meta_injector_t_site', '' );
+        $this->tTitle = get_option( 'meta_injector_t_title', $this->ogTitle );
+        $this->tDescription = get_option( 'meta_injector_t_description', $this->ogDescription );
+        $this->tImage = get_option( 'meta_injector_t_image', $this->ogImage );
     }
 
     public function setup_hooks() {
@@ -94,6 +94,20 @@ class MetaInjectorSettingPage {
         register_setting( 'meta_injector_settings_group', 'meta_injector_author' );
         register_setting( 'meta_injector_settings_group', 'meta_injector_robots' );
 
+        register_setting( 'meta_injector_settings_group', 'meta_injector_og_title' );
+        register_setting( 'meta_injector_settings_group', 'meta_injector_og_description' );
+        register_setting( 'meta_injector_settings_group', 'meta_injector_og_image' );
+        register_setting( 'meta_injector_settings_group', 'meta_injector_og_url' );
+        register_setting( 'meta_injector_settings_group', 'meta_injector_og_type' );
+        register_setting( 'meta_injector_settings_group', 'meta_injector_og_site_name' );
+        register_setting( 'meta_injector_settings_group', 'meta_injector_og_locale' );
+        
+        register_setting( 'meta_injector_settings_group', 'meta_injector_t_card' );
+        register_setting( 'meta_injector_settings_group', 'meta_injector_t_site' );
+        register_setting( 'meta_injector_settings_group', 'meta_injector_t_title' );
+        register_setting( 'meta_injector_settings_group', 'meta_injector_t_description' );
+        register_setting( 'meta_injector_settings_group', 'meta_injector_t_image' );
+
         // Section setting
         add_settings_section(
             'general_meta_tag_section', 
@@ -116,6 +130,7 @@ class MetaInjectorSettingPage {
             'meta-injector',
             array( 'name' => '' )
         );
+        
 
         // Field setting
         add_settings_field(
@@ -149,6 +164,14 @@ class MetaInjectorSettingPage {
             'meta-injector',
             'general_meta_tag_section',
             array( 'key' => 'meta_injector_robots' )
+        );
+        add_settings_field(
+          'meta_injector_og_title',
+          'OG Title',
+          array( $this, 'field_callback' ),
+          'meta-injector',
+          'open_graph_meta_tag_section',
+          array( 'key' => 'meta_injector_og_title' )
         );
     }
 
